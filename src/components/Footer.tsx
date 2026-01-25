@@ -30,8 +30,8 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Quick Links */}
-          <div className="footer-section">
+          {/* Quick Links - Hidden on minimal footer */}
+          <div className="footer-section hide-on-mobile">
             <h4 className="footer-title">Quick Links</h4>
             <ul className="footer-links">
               <li><Link href="/">Home</Link></li>
@@ -40,8 +40,8 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Legal */}
-          <div className="footer-section">
+          {/* Legal - Hidden on minimal footer */}
+          <div className="footer-section hide-on-mobile">
             <h4 className="footer-title">Legal</h4>
             <ul className="footer-links">
               <li><Link href="/privacy">Privacy Policy</Link></li>
@@ -50,8 +50,8 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Support */}
-          <div className="footer-section">
+          {/* Support - Hidden on minimal footer */}
+          <div className="footer-section hide-on-mobile">
             <h4 className="footer-title">Support</h4>
             <ul className="footer-links">
               <li><Link href="/faq">FAQ</Link></li>
@@ -62,6 +62,9 @@ export default function Footer() {
 
         <div className="footer-bottom">
           <p>© {currentYear} Code X. All rights reserved.</p>
+          <div className="footer-watermark">
+            Designed & Built by <span className="highlight">Harshad Nikam</span>
+          </div>
         </div>
       </div>
     </footer>

@@ -92,12 +92,16 @@ export function StaggerContainer({
 export function StaggerItem({
   children,
   className = '',
+  tag = 'div',
 }: {
   children: ReactNode;
   className?: string;
+  tag?: 'div' | 'li';
 }) {
+  const Component = tag === 'li' ? motion.li : motion.div;
+
   return (
-    <motion.div
+    <Component
       variants={{
         hidden: { opacity: 0, y: 20 },
         visible: {
@@ -112,7 +116,7 @@ export function StaggerItem({
       className={className}
     >
       {children}
-    </motion.div>
+    </Component>
   );
 }
 

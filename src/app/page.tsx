@@ -80,29 +80,27 @@ export default function Home() {
           </div>
           <SlideIn direction="right" delay={0.4}>
             <div className="hero-visual">
-              <FloatingElement amplitude={8} duration={5}>
-                <div className="code-preview liquid-glass">
-                  <div className="preview-header">
-                    <div className="preview-dots">
-                      <span></span>
-                      <span></span>
-                      <span></span>
-                    </div>
-                    <span className="preview-title">Code X</span>
+              <div className="code-preview liquid-glass">
+                <div className="preview-header">
+                  <div className="preview-dots">
+                    <span></span>
+                    <span></span>
+                    <span></span>
                   </div>
-                  <div className="preview-content">
-                    <div className="preview-line">
-                      <span className="line-label">Input:</span>
-                      <span className="line-value">HELLO 196</span>
-                    </div>
-                    <div className="preview-arrow">↓</div>
-                    <div className="preview-line encoded">
-                      <span className="line-label">Output:</span>
-                      <span className="line-value">25885 iqg</span>
-                    </div>
+                  <span className="preview-title">Code X</span>
+                </div>
+                <div className="preview-content">
+                  <div className="preview-line">
+                    <span className="line-label">Input:</span>
+                    <span className="line-value">HELLO 196</span>
+                  </div>
+                  <div className="preview-arrow">↓</div>
+                  <div className="preview-line encoded">
+                    <span className="line-label">Output:</span>
+                    <span className="line-value">25885 iqg</span>
                   </div>
                 </div>
-              </FloatingElement>
+              </div>
             </div>
           </SlideIn>
         </section>
@@ -140,14 +138,16 @@ export default function Home() {
             <div className="benefits-content liquid-glass-tint">
               <h2 className="section-title">Why Choose Code X?</h2>
               <StaggerContainer className="benefits-list" staggerDelay={0.08}>
-                {benefits.map((benefit, index) => (
-                  <StaggerItem key={index}>
-                    <li className="benefit-item">
-                      <Check size={20} className="benefit-check" />
-                      <span>{benefit}</span>
-                    </li>
-                  </StaggerItem>
-                ))}
+                <ul className="benefits-ul" style={{ listStyle: 'none', padding: 0 }}>
+                  {benefits.map((benefit, index) => (
+                    <StaggerItem key={index} tag="li">
+                      <div className="benefit-item">
+                        <Check size={20} className="benefit-check" />
+                        <span>{benefit}</span>
+                      </div>
+                    </StaggerItem>
+                  ))}
+                </ul>
               </StaggerContainer>
               <Link href="/encoder" className="btn-primary liquid-btn">
                 Get Started Free
