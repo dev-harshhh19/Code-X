@@ -1,4 +1,4 @@
-import { ALL_LETTERS, NUMBER_MAP } from './maps';
+import { ALL_LETTERS, NUMBER_MAP, ALLOWED_SYMBOLS } from './maps';
 
 export interface EncodingResult {
   success: boolean;
@@ -11,7 +11,8 @@ export function validateForEncoding(input: string): { isValid: boolean; errors: 
   const invalidChars: string[] = [];
 
   for (const char of input) {
-    if (char === ' ' || /[A-Z]/.test(char) || /[0-9]/.test(char)) continue;
+    // Allow: space, A-Z, 0-9, and allowed symbols
+    if (char === ' ' || /[A-Z]/.test(char) || /[0-9]/.test(char) || ALLOWED_SYMBOLS.has(char)) continue;
     if (!invalidChars.includes(char)) invalidChars.push(char);
   }
 
@@ -20,7 +21,11 @@ export function validateForEncoding(input: string): { isValid: boolean; errors: 
     if (lowercase.length > 0) {
       errors.push(`Lowercase not allowed: ${lowercase.join(', ')}. Use UPPERCASE.`);
     }
-    const other = invalidChars.filter(c => !/[a-z]/.test(c));
+    const reserved = invalidChars.filter(c => c === ':' || c === '.');
+    if (reserved.length > 0) {
+      errors.push(`Reserved characters not allowed: ${reserved.join(', ')} (used by encoding)`);
+    }
+    const other = invalidChars.filter(c => !/[a-z]/.test(c) && c !== ':' && c !== '.');
     if (other.length > 0) {
       errors.push(`Invalid characters: ${other.join(', ')}`);
     }
@@ -37,9 +42,16 @@ export function encode(input: string): EncodingResult {
 
   let output = '';
   for (const char of input) {
-    if (char === ' ') output += ' ';
-    else if (ALL_LETTERS[char]) output += ALL_LETTERS[char];
-    else if (NUMBER_MAP[char]) output += NUMBER_MAP[char];
+    if (char === ' ') {
+      output += ' ';
+    } else if (ALL_LETTERS[char]) {
+      output += ALL_LETTERS[char];
+    } else if (NUMBER_MAP[char]) {
+      output += NUMBER_MAP[char];
+    } else if (ALLOWED_SYMBOLS.has(char)) {
+      // Symbols pass through unchanged
+      output += char;
+    }
   }
 
   return { success: true, output, errors: [] };

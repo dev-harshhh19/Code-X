@@ -18,6 +18,13 @@ export const NUMBER_MAP: Record<string, string> = {
   '5': 's', '6': 'g', '7': 't', '8': 'b', '9': 'q',
 };
 
+// Symbols pass through unchanged (except : and . which are reserved)
+export const ALLOWED_SYMBOLS = new Set([
+  '!', '@', '#', '$', '%', '^', '&', '*', '(', ')',
+  '-', '_', '=', '+', '[', ']', '{', '}', '|', '\\',
+  ';', "'", '"', ',', '<', '>', '/', '?', '`', '~'
+]);
+
 // Reverse Maps (for decoding)
 export const REVERSE_NO_PREFIX: Record<string, string> = {
   '9': 'A', '8': 'B', '7': 'C', '6': 'D', '5': 'E',

@@ -1,4 +1,4 @@
-import { REVERSE_NO_PREFIX, REVERSE_COLON_KT, REVERSE_SUFFIX_UZ, REVERSE_NUMBER, VALID_DECODE_SYMBOLS } from './maps';
+import { REVERSE_NO_PREFIX, REVERSE_COLON_KT, REVERSE_SUFFIX_UZ, REVERSE_NUMBER, VALID_DECODE_SYMBOLS, ALLOWED_SYMBOLS } from './maps';
 
 export interface DecodingResult {
   success: boolean;
@@ -11,7 +11,8 @@ export function validateForDecoding(input: string): { isValid: boolean; errors: 
   const invalidChars: string[] = [];
 
   for (const char of input) {
-    if (char === ' ' || char === ':' || /[0-9]/.test(char) || VALID_DECODE_SYMBOLS.has(char)) continue;
+    // Allow: space, colon, digits, valid decode symbols, and passthrough symbols
+    if (char === ' ' || char === ':' || /[0-9]/.test(char) || VALID_DECODE_SYMBOLS.has(char) || ALLOWED_SYMBOLS.has(char)) continue;
     if (!invalidChars.includes(char)) invalidChars.push(char);
   }
 
@@ -56,6 +57,10 @@ export function decode(input: string): DecodingResult {
       }
     } else if (REVERSE_NUMBER[char]) {
       output += REVERSE_NUMBER[char];
+      i++;
+    } else if (ALLOWED_SYMBOLS.has(char)) {
+      // Symbols pass through unchanged
+      output += char;
       i++;
     } else {
       i++;
