@@ -1,36 +1,89 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Code X | Secure Encoder & Decoder
+
+Code X is a modern web application designed to transform text into a custom secure cipher system. Built with performance and user experience in mind, it creates a seamless environment for cryptography enthusiasts and casual users alike to encode and decode messages instantly.
+
+## Features
+
+- **Secure Encoding**: Custom cipher algorithm transforming uppercase letters and numbers.
+- **Real-time Processing**: Instant conversion logic with zero latency.
+- **Production Grade UI**: Responsive design with glassmorphism effects and smooth animations.
+- **Mobile First**: Fully optimized layout for all device sizes (Desktop, Tablet, Mobile).
+- **Privacy Focused**: All processing happens client-side; no data is stored or transmitted.
+- **Interactive Experience**: 3D parallax background and gyroscope support for mobile devices.
+
+## Technology Stack
+
+- **Framework**: Next.js 15 (App Router)
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS & Custom CSS Variables
+- **Animations**: Framer Motion
+- **Icons**: Lucide React
+- **Performance**: Optimized rendering with requestAnimationFrame and React best practices
 
 ## Getting Started
 
-First, run the development server:
+Follow these steps to set up the project locally.
+
+### Prerequisites
+
+- Node.js (v18 or higher)
+- npm or yarn
+
+### Installation
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/dev-harshhh19/Code-X.git
+   ```
+
+2. Navigate to the project directory:
+   ```bash
+   cd Code-X
+   ```
+
+3. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+### Running the Application
+
+Start the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The application will be available at `http://localhost:3000`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Building for Production
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+To create a production build:
 
-## Learn More
+```bash
+npm run build
+npm start
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Project Structure
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```
+src/
+├── app/                 # Next.js App Router pages and layouts
+│   ├── layout.tsx       # Root layout with providers
+│   ├── page.tsx         # Landing page
+│   └── globals.css      # Global styles and themes
+├── components/          # Reusable UI components
+│   ├── SecretEncoder.tsx # Core encoding logic UI
+│   ├── Background3D.tsx  # Interactive parallax background
+│   └── ...
+├── lib/                 # Utility functions and logic
+│   ├── encode.ts        # Encoding algorithm
+│   ├── decode.ts        # Decoding algorithm
+│   └── maps.ts          # Cipher character mappings
+└── ...
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## License
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+This project is licensed under the MIT License.
