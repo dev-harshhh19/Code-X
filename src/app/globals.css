@@ -2,16 +2,19 @@
 
 /* Default: Dark Theme */
 :root {
-  --background: #0a0a0f;
-  --foreground: #ededed;
-  --accent: #ff6600;
-  --accent-light: #fc8b40;
-  --accent-soft: #f8b080;
-  --accent-glow: rgba(255, 102, 0, 0.3);
+  --background: #030c11;
+  --foreground: #f3f6f8;
+  --primary: #155674;
+  --secondary: #4a9e94;
+  --accent: #3d9d8a;
+  --accent-light: #4fb5a0;
+  --accent-soft: #4a9e94;
+  --accent-glow: rgba(61, 157, 138, 0.25);
   --surface: rgba(255, 255, 255, 0.05);
   --surface-hover: rgba(255, 255, 255, 0.08);
   --border: rgba(255, 255, 255, 0.1);
   --text-muted: rgba(255, 255, 255, 0.6);
+  --grid-color: rgba(75, 85, 99, 0.4);
   --error: #ef4444;
   --success: #22c55e;
 }
@@ -19,16 +22,19 @@
 /* Light Theme: Auto-applies when user prefers light mode */
 @media (prefers-color-scheme: light) {
   :root {
-    --background: #f8f9fa;
-    --foreground: #1a1a1a;
-    --accent: #e85500;
-    --accent-light: #fc8b40;
-    --accent-soft: #f8b080;
-    --accent-glow: rgba(255, 102, 0, 0.25);
+    --background: #f3f6f8;
+    --foreground: #030c11;
+    --primary: #155674;
+    --secondary: #4a9e94;
+    --accent: #2d7d6e;
+    --accent-light: #3d9d8a;
+    --accent-soft: #4a9e94;
+    --accent-glow: rgba(45, 125, 110, 0.2);
     --surface: rgba(255, 255, 255, 0.7);
     --surface-hover: rgba(255, 255, 255, 0.9);
     --border: rgba(0, 0, 0, 0.08);
     --text-muted: rgba(0, 0, 0, 0.6);
+    --grid-color: rgba(75, 85, 99, 0.15);
     --glass-bg: rgba(255, 255, 255, 0.6);
     --glass-border: rgba(255, 255, 255, 0.8);
     --error: #dc2626;
@@ -51,22 +57,6 @@
 
   .toggle-container {
     background: rgba(0, 0, 0, 0.05);
-  }
-
-  /* Light theme shape colors - use subtle grays instead of dark foreground */
-  .shape-white {
-    background: rgba(0, 0, 0, 0.08);
-    border-color: rgba(0, 0, 0, 0.12);
-  }
-
-  .shape-cross.shape-white::before,
-  .shape-cross.shape-white::after {
-    background: rgba(0, 0, 0, 0.08);
-  }
-
-  /* Honeycomb SVG for light theme */
-  .honeycomb-svg .hex {
-    stroke-opacity: 0.18;
   }
 }
 
@@ -104,117 +94,141 @@ body {
   background: var(--background);
 }
 
-/* Large honeycomb on left side like ChaiCode */
-.honeycomb-left {
+/* Simple Grid Background */
+.grid-background {
   position: absolute;
-  left: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 300px;
-  height: 400px;
+  inset: -50px;
+  background-image:
+    linear-gradient(to right, var(--grid-color) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-color) 1px, transparent 1px);
+  background-size: 40px 40px;
   transition: transform 0.3s ease-out;
-  mask-image: linear-gradient(to right, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.3) 50%, transparent 100%);
-  -webkit-mask-image: linear-gradient(to right, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.3) 50%, transparent 100%);
-}
-
-.honeycomb-svg {
-  width: 100%;
-  height: 100%;
-}
-
-.honeycomb-svg .hex {
-  fill: transparent;
-  stroke: var(--accent);
-  stroke-width: 1.5;
-  stroke-opacity: 0.25;
-}
-
-/* Floating shapes base */
-.floating-shape {
-  position: absolute;
-  transition: transform 0.3s ease-out;
-  will-change: transform;
-}
-
-.shape-accent {
-  background: var(--accent);
-  border-color: var(--accent);
-}
-
-.shape-white {
-  background: var(--foreground);
-  border-color: var(--foreground);
-}
-
-/* Circle */
-.shape-circle {
-  border-radius: 50%;
-}
-
-/* Square */
-.shape-square {
-  border-radius: 4px;
-}
-
-/* Ring - hollow circle */
-.shape-ring {
-  border-radius: 50%;
-  background: transparent !important;
-  border: 2px solid;
-}
-
-/* Cross/Plus */
-.shape-cross {
-  background: transparent !important;
-  position: relative;
-}
-
-.shape-cross::before,
-.shape-cross::after {
-  content: '';
-  position: absolute;
-  background: inherit;
-}
-
-.shape-cross.shape-accent::before,
-.shape-cross.shape-accent::after {
-  background: var(--accent);
-}
-
-.shape-cross.shape-white::before,
-.shape-cross.shape-white::after {
-  background: var(--foreground);
-}
-
-.shape-cross::before {
-  left: 50%;
-  top: 0;
-  transform: translateX(-50%);
-  width: 30%;
-  height: 100%;
-}
-
-.shape-cross::after {
-  top: 50%;
-  left: 0;
-  transform: translateY(-50%);
-  width: 100%;
-  height: 30%;
-}
-
-/* Dot - small filled circle */
-.shape-dot {
-  border-radius: 50%;
 }
 
 /* Gradient overlay for smooth edges */
 .gradient-overlay {
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse at center, transparent 0%, var(--background) 100%);
+  background:
+    radial-gradient(ellipse at center, transparent 0%, var(--background) 70%),
+    linear-gradient(to bottom, transparent 60%, var(--background) 100%);
   pointer-events: none;
 }
 
+/* ==========================================
+   LIQUID GLASS EFFECT (Apple macOS 26 Style)
+   ========================================== */
+
+.liquid-glass {
+  position: relative;
+  background: linear-gradient(135deg,
+      rgba(255, 255, 255, 0.08) 0%,
+      rgba(255, 255, 255, 0.04) 50%,
+      rgba(255, 255, 255, 0.08) 100%);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 24px;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+}
+
+/* Liquid shimmer/refraction overlay */
+.liquid-glass::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(105deg,
+      transparent 40%,
+      rgba(255, 255, 255, 0.06) 45%,
+      rgba(255, 255, 255, 0.1) 50%,
+      rgba(255, 255, 255, 0.06) 55%,
+      transparent 60%);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.liquid-glass:hover::before {
+  opacity: 1;
+}
+
+/* Liquid glass with tint */
+.liquid-glass-tint {
+  position: relative;
+  background: linear-gradient(135deg,
+      rgba(61, 157, 138, 0.08) 0%,
+      rgba(61, 157, 138, 0.04) 50%,
+      rgba(61, 157, 138, 0.08) 100%);
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  border: 1px solid rgba(61, 157, 138, 0.15);
+  border-radius: 20px;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.03);
+}
+
+/* Liquid glass button */
+.liquid-btn {
+  position: relative;
+  background: linear-gradient(135deg,
+      var(--accent) 0%,
+      var(--accent-light) 100%);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  box-shadow:
+    0 4px 20px var(--accent-glow),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.liquid-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom,
+      rgba(255, 255, 255, 0.2) 0%,
+      transparent 50%);
+  pointer-events: none;
+}
+
+.liquid-btn:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow:
+    0 8px 30px var(--accent-glow),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+/* Light theme liquid glass adjustments */
+@media (prefers-color-scheme: light) {
+  .liquid-glass {
+    background: linear-gradient(135deg,
+        rgba(255, 255, 255, 0.6) 0%,
+        rgba(255, 255, 255, 0.4) 50%,
+        rgba(255, 255, 255, 0.6) 100%);
+    border-color: rgba(255, 255, 255, 0.8);
+    box-shadow:
+      0 8px 32px rgba(0, 0, 0, 0.08),
+      inset 0 1px 0 rgba(255, 255, 255, 0.9),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.03);
+  }
+
+  .liquid-glass-tint {
+    background: linear-gradient(135deg,
+        rgba(45, 125, 110, 0.08) 0%,
+        rgba(45, 125, 110, 0.04) 50%,
+        rgba(45, 125, 110, 0.08) 100%);
+    border-color: rgba(45, 125, 110, 0.2);
+  }
+}
 
 
 a {
@@ -921,8 +935,14 @@ a {
   gap: 0.5rem;
   margin-bottom: 2rem;
   padding: 0.25rem;
-  background: rgba(0, 0, 0, 0.3);
-  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(20px) saturate(150%);
+  -webkit-backdrop-filter: blur(20px) saturate(150%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 14px;
+  box-shadow:
+    0 4px 16px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }
 
 .toggle-btn {
