@@ -100,7 +100,7 @@ export default function SecretEncoder() {
   };
 
   return (
-    <div className="encoder-container">
+    <div className="encoder-container liquid-glass">
       <div className="toggle-container">
         <button
           onClick={toggleMode}
