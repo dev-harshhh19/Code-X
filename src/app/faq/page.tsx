@@ -2,9 +2,15 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { HelpCircle, ChevronDown } from 'lucide-react';
 
-export const metadata = {
-  title: 'FAQ | Code X',
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'FAQ',
   description: 'Frequently Asked Questions about Code X - Get answers to common questions.',
+  openGraph: {
+    title: 'FAQ | Code X',
+    description: 'Frequently Asked Questions about Code X - Get answers to common questions.',
+  },
 };
 
 const faqs = [

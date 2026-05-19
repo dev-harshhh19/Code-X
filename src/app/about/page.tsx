@@ -2,9 +2,15 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Shield, Code, Users, Heart } from 'lucide-react';
 
-export const metadata = {
-  title: 'About | Code X',
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'About',
   description: 'Learn about Code X and our mission to make cryptography fun and accessible.',
+  openGraph: {
+    title: 'About | Code X',
+    description: 'Learn about Code X and our mission to make cryptography fun and accessible.',
+  },
 };
 
 export default function AboutPage() {

@@ -2,9 +2,15 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Shield } from 'lucide-react';
 
-export const metadata = {
-  title: 'Privacy Policy | Code X',
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Privacy Policy',
   description: 'Privacy Policy for Code X - Learn how we protect your data.',
+  openGraph: {
+    title: 'Privacy Policy | Code X',
+    description: 'Privacy Policy for Code X - Learn how we protect your data.',
+  },
 };
 
 export default function PrivacyPage() {

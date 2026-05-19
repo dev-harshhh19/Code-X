@@ -33,8 +33,7 @@ export default function ContactPage() {
       <Navbar />
       <main className="legal-page contact-page">
         <div className="legal-header">
-          <Mail size={48} className="legal-icon" />
-          <h1>Contact Us</h1>
+          <h1 className="t-title">Contact</h1>
           <p className="legal-subtitle">Have questions or feedback? We&apos;d love to hear from you.</p>
         </div>
 
@@ -54,8 +53,7 @@ export default function ContactPage() {
           ) : (
             <form className="contact-form" onSubmit={handleSubmit}>
               <div className="form-group">
-                <label htmlFor="name">
-                  <User size={16} />
+                <label htmlFor="name" className="t-label">
                   Your Name
                 </label>
                 <input
@@ -70,8 +68,7 @@ export default function ContactPage() {
               </div>
 
               <div className="form-group">
-                <label htmlFor="email">
-                  <Mail size={16} />
+                <label htmlFor="email" className="t-label">
                   Email Address
                 </label>
                 <input
@@ -86,8 +83,7 @@ export default function ContactPage() {
               </div>
 
               <div className="form-group">
-                <label htmlFor="subject">
-                  <MessageSquare size={16} />
+                <label htmlFor="subject" className="t-label">
                   Subject
                 </label>
                 <select
@@ -107,8 +103,7 @@ export default function ContactPage() {
               </div>
 
               <div className="form-group">
-                <label htmlFor="message">
-                  <MessageSquare size={16} />
+                <label htmlFor="message" className="t-label">
                   Your Message
                 </label>
                 <textarea
@@ -122,8 +117,7 @@ export default function ContactPage() {
                 />
               </div>
 
-              <button type="submit" className="btn-primary submit-btn">
-                <Send size={18} />
+              <button type="submit" className="btn btn-primary submit-btn">
                 Send Message
               </button>
             </form>

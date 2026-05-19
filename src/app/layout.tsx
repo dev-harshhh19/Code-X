@@ -1,22 +1,49 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Background3D from "@/components/Background3D";
-
+import BootSequence from "@/components/BootSequence";
 export const metadata: Metadata = {
-  title: "Code X | Encode & Decode",
-  description: "Encode and decode text using a custom case-sensitive secret coded language. Transform uppercase letters and numbers into secret cipher codes.",
-  keywords: ["encoder", "decoder", "cipher", "secret code", "cryptography", "code x"],
+  title: {
+    default: "Code X — Custom Cipher System",
+    template: "%s | Code X",
+  },
+  description: "A premium, browser-only text encoder and decoder built on a custom cipher. Pure client-side operation with zero tracking, storage, or server communication.",
+  keywords: ["encoder", "decoder", "cipher", "secret code", "cryptography", "privacy", "client-side"],
+  authors: [{ name: "Developer" }],
+  creator: "Developer",
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://code-x-portfolio.vercel.app'),
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "/",
+    title: "Code X — Custom Cipher System",
+    description: "A premium, browser-only text encoder and decoder built on a custom cipher.",
+    siteName: "Code X",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Code X — Custom Cipher System",
+    description: "A pure client-side cipher system. No tracking, no storage.",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body>
-        <Background3D />
+        <BootSequence />
         {children}
       </body>
     </html>

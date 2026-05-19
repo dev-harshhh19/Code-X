@@ -2,9 +2,15 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { FileText } from 'lucide-react';
 
-export const metadata = {
-  title: 'Terms of Service | Code X',
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Terms of Service',
   description: 'Terms of Service for Code X - Read our terms and conditions.',
+  openGraph: {
+    title: 'Terms of Service | Code X',
+    description: 'Terms of Service for Code X - Read our terms and conditions.',
+  },
 };
 
 export default function TermsPage() {

@@ -3,9 +3,15 @@ import Footer from '@/components/Footer';
 import SecretEncoder from '@/components/SecretEncoder';
 import { Shield } from 'lucide-react';
 
-export const metadata = {
-  title: 'Encoder | Code X',
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Encoder',
   description: 'Encode and decode your messages with our custom cipher system.',
+  openGraph: {
+    title: 'Encoder | Code X',
+    description: 'Encode and decode your messages with our custom cipher system.',
+  },
 };
 
 export default function EncoderPage() {

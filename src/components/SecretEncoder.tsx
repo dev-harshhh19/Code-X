@@ -5,8 +5,7 @@ import { Lock, Unlock, Copy, Check, ArrowDown, AlertTriangle, Trash2 } from 'luc
 import { encode } from '@/lib/encode';
 import { decode } from '@/lib/decode';
 import { saveToStorage, loadFromStorage, clearStorage } from '@/lib/storage';
-import ScrambleText from './ScrambleText';
-import SkeletonLoader from './SkeletonLoader';
+
 
 type Mode = 'encode' | 'decode';
 
@@ -21,7 +20,6 @@ export default function SecretEncoder() {
   const [errors, setErrors] = useState<string[]>([]);
   const [copied, setCopied] = useState(false);
   const [loaded, setLoaded] = useState(false);
-  const [isInitializing, setIsInitializing] = useState(true);
   const [isScrambling, setIsScrambling] = useState(false);
 
   const scrambleTimeoutRef = useRef<NodeJS.Timeout | null>(null);
@@ -30,18 +28,12 @@ export default function SecretEncoder() {
 
   // Load from storage on mount
   useEffect(() => {
-    // Simulate initialization time for the "premium app" feel
-    const timer = setTimeout(() => {
-      const stored = loadFromStorage();
-      if (stored) {
-        setInput(stored.input);
-        setMode(stored.mode);
-      }
-      setLoaded(true);
-      setIsInitializing(false);
-    }, 800);
-
-    return () => clearTimeout(timer);
+    const stored = loadFromStorage();
+    if (stored) {
+      setInput(stored.input);
+      setMode(stored.mode);
+    }
+    setLoaded(true);
   }, []);
 
   // Scramble animation function
@@ -205,12 +197,9 @@ export default function SecretEncoder() {
       : 'Enter encoded text to decode...';
   };
 
-  if (isInitializing) {
-    return <SkeletonLoader />;
-  }
 
   return (
-    <div className="encoder-container liquid-glass">
+    <div className="encoder-container">
       <div className="toggle-container">
         <button
           onClick={toggleMode}
@@ -229,7 +218,7 @@ export default function SecretEncoder() {
       </div>
 
       <div className="input-section">
-        <div className="section-header">
+        <div className="section-label-row">
           <label htmlFor="input-text" className="section-label">
             {mode === 'encode' ? 'Original Text' : 'Encoded Text'}
           </label>
@@ -272,7 +261,7 @@ export default function SecretEncoder() {
       </div>
 
       <div className="output-section">
-        <div className="section-header">
+        <div className="section-label-row">
           <label htmlFor="output-text" className="section-label">
             {mode === 'encode' ? 'Encoded Output' : 'Decoded Output'}
             {isScrambling && <span className="encoding-indicator"> Processing...</span>}

@@ -2,9 +2,15 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Cookie } from 'lucide-react';
 
-export const metadata = {
-  title: 'Cookie Policy | Code X',
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Cookie Policy',
   description: 'Cookie Policy for Code X - Learn about our use of cookies.',
+  openGraph: {
+    title: 'Cookie Policy | Code X',
+    description: 'Cookie Policy for Code X - Learn about our use of cookies.',
+  },
 };
 
 export default function CookiesPage() {
